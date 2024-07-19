@@ -87,3 +87,73 @@
   border: none;
   cursor: pointer;
 }
+
+
+/* Start Home page styles */
+.homescreen{
+  background-color: #ededed;
+  width: 100%;
+  height: 50px;
+}
+
+.homescreen header{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.homescreen header a{
+  color:#007dfe;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.homescreen .pagecontent{
+  height: calc(100vh - 50px);
+ /*  background-color: #ededed;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homescreen .pagecontent .usercard{
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  min-height: 200px;
+  width: 400px;
+  box-shadow: 0px 0px 1px 3px #ddd;
+}
+
+.homescreen .pagecontent .usercard img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 20px auto;
+}
+
+.homescreen .pagecontent .usercard h3{
+  color:#007dfe;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.homescreen .pagecontent .usercard .usermeta p{
+  margin-bottom: 10px;
+}
+
+.homescreen .pagecontent .usercard .usermeta p span:first-child{
+  display: inline-block;
+  min-width: 100px;
+  color:#6e6e6e;
+  font-size: 15px;
+}
+
+.homescreen .pagecontent .usercard .usermeta p span:last-child{
+  color:#333;
+  font-size: 16px;
+  font-weight: bold;
+}
