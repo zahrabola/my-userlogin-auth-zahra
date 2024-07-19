@@ -17,13 +17,20 @@ const LoginPage = () => {
   };
 
   ///submitUserLogin Function
-  const submitUserLogin = () => {
+  const submitUserLogin = async () => {
     console.log(userName);
     console.log(userPassword);
 
     try {
-        const response = axios.post('url', body)
 
+        const requestBody = {
+            "username" : userName,
+            "password" : userPassword
+        }
+        const response = await axios.post('https://dummyjson.com/auth/login', requestBody)
+        if (response) {
+            console.log(response.data)
+        }
     } 
     catch (error) {
 
