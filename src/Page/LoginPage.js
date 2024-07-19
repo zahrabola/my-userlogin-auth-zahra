@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,27 +18,56 @@ const LoginPage = () => {
     setUserPassword(event.target.value);
   };
 
+  const formValidation = () => {
+    let isValid = true;
+
+    if (!userName) {
+      toast.warn("Username is required");
+      isValid = false;
+    }
+
+    if (!userPassword) {
+      toast.warn("User password is required");
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
+
+
   ///submitUserLogin Function
   const submitUserLogin = async () => {
     console.log(userName);
     console.log(userPassword);
 
     try {
-
+      if (formValidation()) {
+        // before submit - check validation
         const requestBody = {
-            "username" : userName,
-            "password" : userPassword
-        }
-        const response = await axios.post('https://dummyjson.com/auth/login', requestBody)
+          username: userName,
+          password: userPassword,
+        };
+        const response = await axios.post(
+          "https://dummyjson.com/auth/login",
+          requestBody
+        );
         if (response) {
-            console.log(response.data)
+          console.log(response.data);
+          // store data and navigate to homepage
+          //data will go to the homepage
+          
+     navigate("/home", { state: { userData: response.data } });
+
+     
         }
-    } 
-    catch (error) {
-
-
-    } 
-    finally {
+      }
+    } catch (error) {
+      ////login error in case of invalid user login username and password
+      // we will use Toaster to show the error to user
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
+    } finally {
     }
   };
 
@@ -74,6 +105,7 @@ const LoginPage = () => {
             </button>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
